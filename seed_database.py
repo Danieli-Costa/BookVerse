@@ -1,20 +1,15 @@
 """Script to seed database."""
-
-import os
-import json
-import requests
-
-
-import crud
-import model
 import server
+import model
+import crud
+import requests
+import json
+import os
 
+# API keys
+NYT_API_KEY = os.environ["NYT_API_KEY"]
+GOOGLE_BOOKS_KEY = os.environ["GOOGLE_BOOKS_KEY"]
 
-# os.system("dropdb bookshelf")
-# os.system("createdb bookshelf")
-
-# model.connect_to_db(server.app)
-# model.db.create_all()
-
-
-# res = requests.get
+# Connect to database and create all tables
+model.connect_to_db(server.app)
+model.db.create_all()
