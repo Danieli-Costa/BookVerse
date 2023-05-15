@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Book App Home{% endblock %} {% block
+body %}
+
+<div class="container">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Book app</span>
+    </div>
+  </nav>
+  <br />
+  <br />
+  <br />
+  <form class="search-form" class="mb-3">
+    <div class="row">
+      <div class="col-9">
+        <input
+          type="search"
+          placeholder="Enter a book"
+          autocomplete="on"
+          class="form-control"
+        />
+      </div>
+      <div class="col-3">
+        <input type="submit" value="Search 🔍" class="btn btn-primary w-100" />
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
