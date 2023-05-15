@@ -9,6 +9,9 @@ def create_user(email, password, first_name, last_name):
     user = User(email=email, password=password,
                 first_name=first_name, last_name=last_name)
 
+    db.session.add(user)
+    db.session.commit()
+
     return user
 
 
@@ -35,6 +38,9 @@ def create_book(title, author):
 
     book = Book(title=title, author=author)
 
+    db.session.add(book)
+    db.session.commit()
+
     return book
 
 
@@ -55,6 +61,9 @@ def create_review(user, book, review):
 
     review = Review(user=user, book=book, review=review)
 
+    db.session.add(review)
+    db.session.commit()
+
     return review
 
 
@@ -68,6 +77,9 @@ def create_bookshelf(user):
     """Create and return a bookshelf"""
 
     bookshelf = Bookshelf(user=user)
+
+    db.session.add(bookshelf)
+    db.session.commit()
 
     return bookshelf
 
