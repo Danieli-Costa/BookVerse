@@ -36,6 +36,7 @@ class Bookshelf(db.Model):
 
     books = db.relationship("Book", secondary=book_users, lazy="subquery",
                             backref=db.backref("bookshelf", lazy=True), overlaps="books,user")
+    bookshelf_status = db.Column(db.Boolean)
 
     def __repr__(self):
         return f"<Bookshelf bookshelf_id={self.bookshelf_id} user_id={self.user_id}>"
@@ -65,7 +66,19 @@ class Book(db.Model):
 
     book_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String, nullable=False)
-    author = db.Column(db.String, nullable=False)
+    authors = db.Column(db.String, nullable=False)
+    smallThumbnail = db.Column(db.String, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    publisher = db.Column(db.String)
+    publishedDate = db.Column(db.DateTime)
+    pageCount = db.Column(db.Integer)
+    mainCategory = db.Column(db.String)
+    averageRating = db.Column(db.Float)
+    language = db.Column(db.String)
+    thumbnail = db.Column(db.String)
+    small_img = db.Column(db.String)
+    medium_img = db.Column(db.String)
+    large_img = db.Column(db.String)
 
     def __repr__(self):
         return f"<Book book_id={self.book_id} title={self.title} author={self.author}>"
