@@ -15,7 +15,6 @@ app.jinja_env.undefined = StrictUndefined
 
 
 # API keys
-
 GOOGLE_BOOKS_KEY = os.environ["GOOGLE_BOOKS_KEY"]
 
 
@@ -87,8 +86,6 @@ def result_search():
 
     data = response.json()
 
-    # books_list = []
-
     num_results = data.get("totalItems")
 
     items_list = data.get("items")
@@ -105,10 +102,13 @@ def book_details(item_id):
     response = requests.get(url, params=payload)
 
     data = response.json()
-    print('*'*20)
+
     details_list = data.get("volumeInfo")
+    selling_info_list = data.get("saleInfo")
+
     print(details_list)
-    return render_template("book_details.html", details_list=details_list)
+
+    return render_template("book_details.html", details_list=details_list, selling_info_list=selling_info_list)
 
 
 if __name__ == '__main__':
