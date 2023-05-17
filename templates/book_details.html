@@ -1,13 +1,46 @@
 {% extends "base.html" %} {% block title %}Book App- Book details{% endblock %}
 {% block body %}
 <div class="container">
-  <div class="book_details">
-    <img
-      src="{{details_list.imageLinks.thumbnail}}"
-      alt=""
-      class="details_cover"
-    />
-    <h2 class="book title">{{details_list.title}}</h2>
+  <div class="book-details-wrapper">
+    <div class="row">
+      <div class="col-4">
+        <img
+          src="{{details_list.imageLinks.thumbnail}}"
+          alt="Book cover"
+          class="details-cover"
+        />
+      </div>
+      <div class="col-8">
+        <h2 class="book-title">{{ details_list.title }}</h2>
+        {% if "subtitle" in details_list %}
+        <h3>{{ details_list.subtitle }}</h3>
+        {% endif %}
+
+        <p class="book-authors">{{ details_list.authors|join(" ") }}</p>
+        <p class="book-publisher">{{ details_list.publisher }}</p>
+        <p class="book-published-date">{{ details_list.publishedDate }}</p>
+        <p class="book-page-count">{{ details_list.pageCount }}</p>
+        <p class="book-language">{{ details_list.language }}</p>
+        <p class="book-preview">{{ details_list.description }}</p>
+        <p class="book-average-rating">{{ details_list.averageRating }}</p>
+        <p class="book-rating-count">{{ details_list.ratingsCount }}</p>
+        <p class="book-categories">{{ details_list.categories|join(" ") }}</p>
+        <p class="book-preview">{{ details_list.previewLink }}</p>
+        <p class="book-preview">{{ selling_info_list.saleability }}</p>
+        <p class="book-preview">
+          {{ selling_info_list.listPrice.amount }} {{
+          selling_info_list.listPrice.currencyCode }}
+        </p>
+        <p class="book-preview">{{ selling_info_list.buyLink }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <a href="" class="btn btn-bookshelf">Add to my bookshelf</a>
+  </div>
+  <div class="row">
+    <h4 class="reviews-title">COMMUNITY REVIEWS</h4>
   </div>
 </div>
+
 {% endblock %}
