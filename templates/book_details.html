@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Book App- Book details{% endblock %}
+{% block body %}
+<div class="container">
+  <div class="book_details">
+    <img
+      src="{{details_list.imageLinks.thumbnail}}"
+      alt=""
+      class="details_cover"
+    />
+    <h2 class="book title">{{details_list.title}}</h2>
+  </div>
+</div>
+{% endblock %}

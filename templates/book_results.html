@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %}Book App- Results{% endblock %} {%
+block body %}
+
+<div class="container">
+  <h3>Search results:</h3>
+  <h4>{{num_results}} items found</h4>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for item in items_list %}
+    <div class="col">
+      <div class="card">
+        <img
+          src="{{item.volumeInfo.imageLinks.thumbnail}}"
+          class="card-img-top"
+          alt="Book cover"
+        />
+        <div class="card-body">
+          <p class="card-text" hidden>{{item["id"]}}</p>
+          <h5 class="card-title">{{item["volumeInfo"]["title"]}}</h5>
+          {% if "authors" in item["volumeInfo"]%}
+          <p class="card-text">
+            Authors: {{item["volumeInfo"]["authors"]|join(" ")}}
+          </p>
+          {%endif%} {% if "description" in item["volumeInfo"] and
+          item["volumeInfo"]["description"]|length > 50 %}
+          <p class="card-text">
+            Description: {{item["volumeInfo"]["description"]}}
+          </p>
+          {% endif %} {% if "averageRating" in item["volumeInfo"] %}
+          <p class="card-text">
+            Average rating: {{item["volumeInfo"]["averageRating"]}}
+          </p>
+          {% endif %}
+          <a href="/details/{{item.id}}" class="btn btn-primary"
+            >More details</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
