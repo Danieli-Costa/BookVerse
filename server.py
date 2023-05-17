@@ -6,6 +6,7 @@ import crud
 from jinja2 import StrictUndefined
 import requests
 import os
+import json
 
 
 app = Flask(__name__)
@@ -70,17 +71,44 @@ def process_login():
     return redirect("/")
 
 
-# @app.route("/results-search")
-# def result_search():
-#     """Show the results of a book search"""
+@app.route("/lookup")
+def result_search():
+    """Show the results of a book search"""
 
-#     title = request.form.get("search-book")
+    search = request.args.get("search-book")
 
-#     url = "https://www.googleapis.com/books/v1/volumes?q=search+terms"
-#     payload = {"apikey": GOOGLE_BOOKS_KEY}
-#      =
+    search_split = search.split()
 
-#     return render_template("book-results.html")
+    title = "+".join(search_split)
+
+    url = f"https://www.googleapis.com/books/v1/volumes?q={title}&printType=books&projection=full&orderBy=relevance"
+    payload = {"key": GOOGLE_BOOKS_KEY}
+    response = requests.get(url, params=payload)
+
+    data = response.json()
+
+    # books_list = []
+
+    num_results = data.get("totalItems")
+
+    items_list = data.get("items")
+
+    return render_template("book_results.html", items_list=items_list, num_results=num_results)
+
+
+@app.route("/details/<item_id>")
+def book_details(item_id):
+    """Shows details of a specific book"""
+
+    url = f"https://www.googleapis.com/books/v1/volumes/{item_id}"
+    payload = {"key": GOOGLE_BOOKS_KEY}
+    response = requests.get(url, params=payload)
+
+    data = response.json()
+    print('*'*20)
+    details_list = data.get("volumeInfo")
+    print(details_list)
+    return render_template("book_details.html", details_list=details_list)
 
 
 if __name__ == '__main__':
