@@ -87,7 +87,7 @@ class Book(db.Model):
     
 
     def __repr__(self):
-        return f"<Book book_id={self.book_id} title={self.title} author={self.author}>"
+        return f"<Book book_id={self.book_id} title={self.title} author={self.authors}>"
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///bookshelf', echo=True):
