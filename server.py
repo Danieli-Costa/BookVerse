@@ -196,7 +196,7 @@ def add_bookshelf():
 
         
         for want_to_read in bookshelf.books:
-            if want_to_read.books.book_id_api == book.book_id_api:
+            if want_to_read.book_id_api == book.book_id_api:
                 flash("This book is already in your bookshelf.")
                 return redirect("/bookshelf")
     
