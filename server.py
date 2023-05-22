@@ -38,6 +38,7 @@ def create_account():
     """View create account page"""
 
     return render_template("create_account.html")
+    
 
 @app.route("/create", methods=["POST"])
 def register_user():
@@ -50,8 +51,10 @@ def register_user():
     username = request.form.get("username")
 
     user = crud.get_user_by_username(username)
-    if user:
-        flash("Cannot create an account with that email. Log in or try again.")
+    user_by_email = crud.get_user_by_email(email)
+
+    if user or user_by_email:
+        flash("Cannot create an account with that email or user name. Log in or try again.")
         return redirect("/log_in")
     else:
         user = crud.create_user(email, password, first_name, last_name, username)
@@ -142,7 +145,6 @@ def book_details(item_id):
     return render_template("book_details.html", details_list=details_list, selling_info_list=selling_info_list, item_id=item_id)
 
 
-
 @app.route("/bookshelf")
 def show_bookshelf():
     """View user's bookshelf"""
@@ -150,13 +152,12 @@ def show_bookshelf():
     if "user" in session:
         
         bookshelf = crud.get_bookshelf_by_user_id(session.get("user_id"))
+        # print(bookshelf.books)
     
         return render_template("bookshelf.html", bookshelf=bookshelf)
     
     else:        
         return redirect ("/log_in")
-   
-
 
 @app.route("/add_to_bookshelf", methods=["POST"])
 def add_bookshelf():
@@ -188,27 +189,45 @@ def add_bookshelf():
                                     authors=book_details_dict["authors"], publisher=book_details_dict["publisher"], published_date=book_details_dict["published_date"],
                                     page_count=book_details_dict["page_count"],language=book_details_dict["language"], average_rating=book_details_dict["average_rating"],
                                     categories=book_details_dict["categories"], thumbnail=book_details_dict["thumbnail"])
-            
+        else:
+            book = book_want_to_read
+
         bookshelf = crud.get_bookshelf_by_user_id(user_id)
 
         
-
         for want_to_read in bookshelf.books:
             if want_to_read.books.book_id_api == book.book_id_api:
                 flash("This book is already in your bookshelf.")
                 return redirect("/bookshelf")
-            else: 
-                book_id = crud.get_book_by_id(book_id)
-                user_id = crud.get_user_by_id(user_id)                               
-                add_book_in_bookshelf = crud.add_books_in_bookshelf(user_id, book_id) 
-                flash("Book added to your bookshelf")           
-                return redirect("/")
-            
-    return redirect("/bookshelf")
     
-   
+        
+                                    
+        add_book_in_bookshelf = crud.add_books_in_bookshelf(user_id, book.book_id)
+        db.session.add(add_book_in_bookshelf)
+        db.session.commit()
+        # print(add_book_in_bookshelf)
+        flash("Book added to your bookshelf")           
+        return redirect("/bookshelf")
+    
 
-                                
+
+   
+@app.route("/delete/<book_id>")
+def delete_book_from_bookshelf(book_id):
+    
+    if "user" in session:
+
+       user = crud.get_user_by_id(session["user_id"])
+       book = crud.get_book_by_id(book_id)
+
+       crud.delete_book_from_bookshelf(user.books, book)
+
+       return "success"
+    else:
+
+        return "failure"
+
+                       
 
 
     
