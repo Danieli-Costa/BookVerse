@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}Book App- Bookshelf{% endblock %} {%
+block body %}
+
+<div class="container">
+  <div class="bookshelf">
+    {% for book in bookshelf.books %}
+    <h1>Hi, {{book.title}}</h1>
+    {% endfor %}
+    <br />
+
+    <h3>Want to read:</h3>
+  </div>
+</div>
+
+{% endblock %}

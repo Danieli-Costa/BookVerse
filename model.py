@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 
 
@@ -15,13 +16,17 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String, unique=True)
     first_name = db.Column(db.String(25), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(30))
 
     def __repr__(self):
         return f"<User user_id={self.user_id} email={self.email}>"
+    
+    
+
 
 
 class Bookshelf(db.Model):
@@ -36,7 +41,7 @@ class Bookshelf(db.Model):
 
     books = db.relationship("Book", secondary=book_users, lazy="subquery",
                             backref=db.backref("bookshelf", lazy=True), overlaps="books,user")
-    bookshelf_status = db.Column(db.Boolean)
+    # bookshelf_status = db.Column(db.Boolean)
 
     def __repr__(self):
         return f"<Bookshelf bookshelf_id={self.bookshelf_id} user_id={self.user_id}>"
@@ -65,20 +70,21 @@ class Book(db.Model):
     __tablename__ = "books"
 
     book_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    book_id_api = db.Column(db.Text)
     title = db.Column(db.String, nullable=False)
+    subtitle = db.Column(db.String)
     authors = db.Column(db.String, nullable=False)
-    smallThumbnail = db.Column(db.String, nullable=False)
-    description = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text)
     publisher = db.Column(db.String)
-    publishedDate = db.Column(db.DateTime)
-    pageCount = db.Column(db.Integer)
-    mainCategory = db.Column(db.String)
-    averageRating = db.Column(db.Float)
+    published_date = db.Column(db.DateTime)
+    page_count = db.Column(db.Integer)
+    categories = db.Column(db.String)
+    average_rating = db.Column(db.Float)
+    ratings_count = db.Column(db.Integer)
     language = db.Column(db.String)
     thumbnail = db.Column(db.String)
-    small_img = db.Column(db.String)
-    medium_img = db.Column(db.String)
-    large_img = db.Column(db.String)
+
+    
 
     def __repr__(self):
         return f"<Book book_id={self.book_id} title={self.title} author={self.author}>"

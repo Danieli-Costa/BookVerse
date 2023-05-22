@@ -13,6 +13,7 @@ block body %}
           src="{{item.volumeInfo.imageLinks.thumbnail}}"
           class="card-img-top"
           alt="Book cover"
+          width="60px"
         />
         <div class="card-body">
           <p class="card-text" hidden>{{item["id"]}}</p>
@@ -21,16 +22,16 @@ block body %}
           <p class="card-text">
             Authors: {{item["volumeInfo"]["authors"]|join(" ")}}
           </p>
-          {%endif%} {% if "description" in item["volumeInfo"] and
+          <!-- {%endif%} {% if "description" in item["volumeInfo"] and
           item["volumeInfo"]["description"]|length > 50 %}
           <p class="card-text">
             Description: {{item["volumeInfo"]["description"]}}
-          </p>
-          {% endif %} {% if "averageRating" in item["volumeInfo"] %}
+          </p> -->
+          <!-- {% endif %} {% if "averageRating" in item["volumeInfo"] %}
           <p class="card-text">
             Average rating: {{item["volumeInfo"]["averageRating"]}}
           </p>
-          {% endif %}
+          {% endif %} -->
           <a href="/details/{{item.id}}" class="btn btn-details"
             >More details</a
           >

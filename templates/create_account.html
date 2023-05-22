@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block title %}Book App- Log in{% endblock%} {%
+block body %}
+
+<div class="container">
+  <div class="create-account-wrapper">
+    <h3>New here ?</h3>
+    <p>Please create an account first, then log in</p>
+    <br />
+
+    <form action="/create" method="POST" class="create-user">
+      <p>
+        <input
+          type="text"
+          placeholder="First Name"
+          name="first_name"
+          required
+        />
+      </p>
+      <p>
+        <input type="text" placeholder="Last Name" name="last_name" required />
+      </p>
+      <p>
+        <input type="email" placeholder="Email" name="email" required />
+      </p>
+      <p>
+        <input type="text" placeholder="Username" name="username" required />
+      </p>
+      <p>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        />
+      </p>
+      <p>
+        <input
+          type="submit"
+          class="btn btn-outline-primary align-bottom"
+          value="Sign up"
+          id="signup-button"
+        />
+      </p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
