@@ -46,7 +46,7 @@ def create_book(book_id_api, title, subtitle, authors, publisher, published_date
         date_obj = datetime.datetime.strptime(published_date, "%Y")
         print(date_obj)
     else:
-        date_obj = datetime.datetime.strptime(published_date, "%Y/%m/%d")
+        date_obj = datetime.datetime.strptime(published_date, "%Y-%m-%d")
 
     book = Book(book_id_api=book_id_api, title=title, subtitle=subtitle, authors=authors, publisher=publisher, published_date=date_obj,
                 page_count=page_count, language=language, average_rating=average_rating, categories=categories, thumbnail=thumbnail)
@@ -83,7 +83,6 @@ def create_review(user, book, review):
     db.session.commit()
 
     return review
-
 
 
 
@@ -127,6 +126,14 @@ def get_books_in_a_bookshelf(user_id):
     bookshelf = get_bookshelf_by_user_id(user_id)
 
     return bookshelf.books
+
+def delete_book_from_bookshelf(bookshelf, book):
+
+    #TODO maybe wrap in try catch
+    bookshelf.books.remove(book)
+
+    db.session.commit()
+
 
 
 if __name__ == "__main__":
