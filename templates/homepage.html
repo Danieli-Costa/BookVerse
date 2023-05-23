@@ -2,24 +2,30 @@
 body %}
 
 <div class="container">
-  <br />
-  <br />
-  <br />
-  <form class="search-form" class="mb-3" action="/lookup">
-    <div class="row">
-      <div class="col-9">
-        <input
-          type="search"
-          placeholder="Enter a book title"
-          autocomplete="on"
-          class="form-control"
-          name="search-book"
-        />
+  <div class="homepage-container">
+    <br />
+    <br />
+    <br />
+    <form class="search-form" class="mb-3" action="/lookup">
+      <div class="row">
+        <div class="col-9">
+          <input
+            type="search"
+            placeholder="Enter a book title"
+            autocomplete="on"
+            class="form-control"
+            name="search-book"
+          />
+        </div>
+        <div class="col-3">
+          <input
+            type="submit"
+            value="Search 🔍"
+            class="btn btn-primary w-100"
+          />
+        </div>
       </div>
-      <div class="col-3">
-        <input type="submit" value="Search 🔍" class="btn btn-primary w-100" />
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
 {% endblock %}
