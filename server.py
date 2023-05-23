@@ -216,15 +216,13 @@ def add_bookshelf():
 def delete_book_from_bookshelf(book_id):
     
     if "user" in session:
+        user = crud.get_user_by_id(session["user_id"])
+        book = crud.get_book_by_id(book_id)
 
-       user = crud.get_user_by_id(session["user_id"])
-       book = crud.get_book_by_id(book_id)
+        crud.delete_book_from_bookshelf(user.books, book)
 
-       crud.delete_book_from_bookshelf(user.books, book)
-
-       return "success"
+        return "success"
     else:
-
         return "failure"
 
                        
