@@ -3,13 +3,25 @@ block body %}
 
 <div class="container">
   <div class="bookshelf">
-    {% for book in bookshelf.books %}
-    <h1>Hi, {{book.title}}</h1>
-    {% endfor %}
+    <h1>Hi,</h1>
+
     <br />
-
     <h3>Want to read:</h3>
-  </div>
-</div>
 
-{% endblock %}
+    {% for book in bookshelf.books %}
+
+    <ul>
+      <p class="book-id" hidden>{{book.book_id}}</p>
+      <div>{{book.title}} {{book.subtitle}}</div>
+      <p id="deleting-status"></p>
+      <div>
+        <button id="delete-book" class="btn btn-primary mt-2">
+          Delete book
+        </button>
+      </div>
+    </ul>
+    {% endfor %}
+  </div>
+
+  {% endblock %}
+</div>
