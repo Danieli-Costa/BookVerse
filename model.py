@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
 
+
 db = SQLAlchemy()
 
 
@@ -16,11 +17,13 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True)
-    first_name = db.Column(db.String(25), nullable=False)
-    last_name = db.Column(db.String(40), nullable=False)
-    email = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(30))
+    username = db.Column(db.String(30), unique=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(60), nullable=False, unique=True)
+    password = db.Column(db.String(128))
+
+    
 
     def __repr__(self):
         return f"<User user_id={self.user_id} email={self.email}>"
