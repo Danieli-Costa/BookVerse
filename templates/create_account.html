@@ -1,47 +1,56 @@
-{% extends "base.html" %} {% block title %}Book App- Log in{% endblock%} {%
-block body %}
+{% extends "base.html" %} {% block title %}BookVerse - Create account{%
+endblock%} {% block body %}
 
 <div class="container">
   <div class="create-account-wrapper">
-    <h3>New here ?</h3>
-    <p>Please create an account first, then log in</p>
+    <h4 class="text-center">New here ?</h4>
     <br />
+    <p class="text-center">
+      Welcome to BookVerse, please fill out the information below to create an
+      account.
+    </p>
+    <br />
+    <div class="create-form-container">
+      <form action="/create" method="POST" class="create-user">
+        <div class="input-field">
+          <i class="fa-solid fa-user" style="color: #3399ff"></i>
+          <input
+            type="text"
+            placeholder="First Name"
+            name="first_name"
+            required
+          />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-user" style="color: #3399ff"></i>
+          <input
+            type="text"
+            placeholder="Last Name"
+            name="last_name"
+            required
+          />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-user" style="color: #3399ff"></i>
+          <input type="text" placeholder="Username" name="username" required />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-at" style="color: #3399ff"></i>
+          <input type="email" placeholder="Email" name="email" required />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-lock" style="color: #3399ff"></i>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+        </div>
 
-    <form action="/create" method="POST" class="create-user">
-      <p>
-        <input
-          type="text"
-          placeholder="First Name"
-          name="first_name"
-          required
-        />
-      </p>
-      <p>
-        <input type="text" placeholder="Last Name" name="last_name" required />
-      </p>
-      <p>
-        <input type="email" placeholder="Email" name="email" required />
-      </p>
-      <p>
-        <input type="text" placeholder="Username" name="username" required />
-      </p>
-      <p>
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          required
-        />
-      </p>
-      <p>
-        <input
-          type="submit"
-          class="btn btn-outline-primary align-bottom"
-          value="Sign up"
-          id="signup-button"
-        />
-      </p>
-    </form>
+        <input type="submit" class="btn sign-up-button" value="Sign up" />
+      </form>
+    </div>
   </div>
 </div>
 
