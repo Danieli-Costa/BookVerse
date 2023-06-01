@@ -90,6 +90,10 @@ class Book(db.Model):
         return f"<Book book_id={self.book_id} title={self.title} author={self.authors}>"
 
 
+
+
+
+
 def connect_to_db(flask_app, db_uri='postgresql:///bookshelf', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
