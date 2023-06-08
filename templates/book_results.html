@@ -1,44 +1,58 @@
-{% extends "base.html" %} {% block title %}Book App- Results{% endblock %} {%
-block body %}
+{% extends "base.html" %} {% block title %}Books - BookVerse Search{% endblock
+%} {% block body %}
 
 <div class="container">
-  <h3>Search results:</h3>
-  <h4>{{num_results}} items found</h4>
+  <div class="results-container">
+    <h4>Search results:</h4>
+    <h6>{{num_results}} items found</h6>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for item in items_list %}
-    <div class="col">
-      <div class="card">
-        <img
-          src="{{item.volumeInfo.imageLinks.thumbnail}}"
-          class="card-img-top"
-          alt="Book cover"
-          width="60px"
-        />
-        <div class="card-body">
-          <p class="card-text" hidden>{{item["id"]}}</p>
-          <h5 class="card-title">{{item["volumeInfo"]["title"]}}</h5>
-          {% if "authors" in item["volumeInfo"]%}
-          <p class="card-text">
-            Authors: {{item["volumeInfo"]["authors"]|join(" ")}}
-          </p>
-          <!-- {%endif%} {% if "description" in item["volumeInfo"] and
-          item["volumeInfo"]["description"]|length > 50 %}
-          <p class="card-text">
-            Description: {{item["volumeInfo"]["description"]}}
-          </p> -->
-          <!-- {% endif %} {% if "averageRating" in item["volumeInfo"] %}
-          <p class="card-text">
-            Average rating: {{item["volumeInfo"]["averageRating"]}}
-          </p>
-          {% endif %} -->
-          <a href="/details/{{item.id}}" class="btn btn-details"
-            >More details</a
-          >
+    <div class="cards-container">
+      <div class="row row-cols-2 row-cols-md-5 g-4">
+        {% for item in items_list %}
+        <div class="col">
+          <div class="card cards-results">
+            <div class="card-img">
+              {% if "imageLinks" in item["volumeInfo"] %}
+              <img
+                src="{{item.volumeInfo.imageLinks.smallThumbnail}}"
+                class="card-img-top img-fluid"
+                alt="Book cover"
+                id="results-img"
+              />
+              {% else %}
+              <img
+                src="/static/img/book-img.jpg"
+                class="card-img-top img-fluid"
+                alt="Book cover"
+                id="book-img"
+              />
+
+              {% endif %}
+            </div>
+
+            <div class="card-body">
+              <p class="card-text" hidden>{{item["id"]}}</p>
+              <p class="card-title text-center">
+                {{item["volumeInfo"]["title"]}}
+              </p>
+              {% if "authors" in item["volumeInfo"]%}
+              <p class="card-text text-center card-info">
+                <em>Authors: </em>&nbsp; {{item["volumeInfo"]["authors"]|join("
+                ")}}
+              </p>
+              {% else %}
+              <p class="card-text text-center card-info"></p>
+              {%endif%}
+              <a href="/details/{{item.id}}" class="btn btn-details"
+                >More details</a
+              >
+            </div>
+          </div>
         </div>
+        {% endfor %}
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
+
 {% endblock %}
