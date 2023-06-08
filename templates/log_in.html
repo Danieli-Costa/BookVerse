@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Book App- Log in{% endblock%} {%
+{% extends "base.html" %} {% block title %}Login - BookVerse{% endblock%} {%
 block body %}
 
 <div class="container">
@@ -8,18 +8,42 @@ block body %}
     <br />
     <div class="login-form-container">
       <form action="/login" method="POST" class="log-in">
-        <div class="input-field">
-          <i class="fa-solid fa-user" style="color: #3399ff"></i>
-          <input type="text" placeholder="Username" name="username" required />
-        </div>
-        <div class="input-field">
-          <i class="fa-solid fa-lock" style="color: #3399ff"></i>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            required
-          />
+        <div class="row">
+          <div class="col-12">
+            <div class="input-field">
+              <i class="fa-solid fa-user" style="color: #3399ff"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                id="username"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-11">
+            <div class="input-field">
+              <i class="fa-solid fa-lock" style="color: #3399ff"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="password"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-center">
+            <i
+              toggle="#password-field"
+              class="fa-regular fa-eye field_icon toggle-login-password"
+              style="color: #fcfcfc"
+            ></i>
+          </div>
+          <div class="remember-me">
+            <input type="checkbox" value="lsRememberMe" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
+          </div>
         </div>
         <input type="submit" class="btn login-button" value="Log in" />
       </form>
