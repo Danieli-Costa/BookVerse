@@ -1,8 +1,456 @@
-.homepage-container {
-  margin: 60px;
-  padding: 30px 10px 700px;
+:root {
+  --main-color: #fcfcfc;
+  --second-color: #1f2021;
+  --background-color: #f0f7f7;
+}
+
+body {
+  background-image: url("/static/img/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Poppins", sans-serif;
+  background-color: rgb(57, 63, 79);
+}
+
+fieldset {
+  border: dotted;
+  padding: 20px;
+}
+
+textarea {
+  resize: none;
+}
+
+hr.dotted {
+  border: dotted;
+}
+
+.navbar {
+  line-height: 35px;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.nav-link,
+.navbar-brand,
+.icon {
+  color: var(--main-color);
+}
+
+.nav-link {
+  font-size: 15px;
+}
+
+.navbar-brand {
+  font-size: 25px;
+}
+
+.create-account-wrapper,
+.login-wrapper {
+  margin: 50px;
+}
+
+.create-account-wrapper h4,
+.create-account-wrapper p,
+.login-wrapper h4,
+.login-wrapper p {
+  color: var(--main-color);
+}
+
+.create-form-container {
+  margin: auto;
+  width: 30%;
+}
+
+.login-form-container {
+  margin: auto;
+  width: 25%;
+}
+
+.input-field {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 50px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+}
+
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  font-size: 1.1rem;
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: rgb(57, 63, 79);
+}
+
+.sign-up-button {
+  background-color: rgb(51, 153, 255);
+  color: var(--second-color);
+  padding: 13px 18px;
+  margin-left: 128px;
+  border: 1px solid rgb(0, 119, 204);
+}
+
+.login-button {
+  background-color: rgb(51, 153, 255);
+  color: var(--second-color);
+  padding: 10px 15px;
+  margin-left: 100px;
+  border: 1px solid rgb(0, 119, 204);
+}
+
+.remember-me {
+  color: var(--main-color);
+  margin-left: 75px;
+  margin-bottom: 10px;
+}
+
+.search-wrapper {
+  margin-top: 50px;
+}
+
+.page-description {
+  color: var(--main-color);
+  margin-top: 22%;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 15vh;
+}
+
+.form-control {
+  width: 750px;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.book-search-button {
+  padding: 15px;
+  font-size: 18px;
+  width: 150px;
+  background-color: rgb(51, 153, 255);
+  color: var(--second-color);
+  margin-left: 10px;
+}
+
+.book-search-button:hover,
+.sign-up-button:hover,
+.login-button:hover {
+  background-color: rgb(0, 119, 204);
+  color: var(--second-color);
 }
 
 .made-by {
+  color: var(--main-color);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 17px;
+}
+
+.results-container {
+  margin-top: 30px;
+}
+
+.results-container h4,
+.results-container h6 {
+  color: var(--main-color);
+}
+
+.cards-container {
+  margin-top: 30px;
+  display: flex;
+}
+
+.card-img-top {
+  height: 380px;
+  object-fit: cover; /* Maintain aspect ratio and crop if needed */
+}
+
+.card-body {
+  background-color: var(--background-color);
+}
+
+.card-title {
+  color: var(--second-color);
+  font-size: 15px;
+  font-weight: bold;
+  height: 45px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-info {
+  color: var(--second-color);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 20px;
+}
+
+.btn-bookshelf {
+  font-size: 15px;
+  margin-left: 25px;
+}
+
+.btn-details {
+  font-size: 13px;
+  margin-left: 50px;
+}
+
+.btn-details,
+.btn-bookshelf {
+  border-radius: 25px;
+  border: 2px solid rgb(51, 153, 255);
+  background: #deedfc;
+  transition: all 100ms ease-in-out;
+}
+
+.btn-details:hover,
+.btn-bookshelf:hover,
+.submit-review:hover {
+  border-color: rgb(0, 119, 204);
+  background: #c8e1fa;
+  box-shadow: 3px -3px 10px #88b3eb;
+}
+
+.details-cover,
+.book-img {
+  height: 280px;
+  width: 13em;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+.book-details-wrapper {
+  padding: 15px;
+  border: solid;
+  border-radius: 30px;
+  margin-top: 20px;
+  background-color: var(--background-color);
+}
+
+.book-title {
+  margin-bottom: 15px;
+}
+
+.btn-bookshelf {
+  margin-left: 550px;
+  padding: 10px;
+}
+
+.write-reviews-wrapper h5 {
+  margin-bottom: 15px;
+}
+
+.write-reviews-wrapper,
+.view-reviews-wrapper {
+  margin-top: 35px;
+  padding: 15px;
+  border: solid;
+  border-radius: 30px;
+  background-color: var(--background-color);
+}
+
+.submit-review {
+  border-radius: 20px;
+  border: 2px solid rgb(51, 153, 255);
+  background: #deedfc;
+  padding: 10px;
+  transition: all 100ms ease-in-out;
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+.no-reviews {
+  padding: 10px;
+  font-size: 18px;
   text-align: center;
+}
+
+.each-review {
+  padding: 10px;
+  border: 1px dotted var(--second-color);
+  background-color: #ebfbfb;
+  margin: 10px;
+}
+
+.about-title {
+  margin-top: 40px;
+  color: var(--main-color);
+}
+
+.about-wrapper {
+  margin: 30px 10px 10px;
+  background-color: var(--background-color);
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.description-app {
+  text-indent: 30px;
+  word-spacing: 5px;
+}
+
+.accordion-body {
+  text-indent: 30px;
+  word-spacing: 2px;
+}
+
+.f-and-q-wrapper {
+  margin: 70px 0px;
+}
+
+.fq-title {
+  color: var(--main-color);
+}
+
+.accordion-item {
+  background-color: var(--background-color);
+}
+
+.accordion-button {
+  font-weight: bold;
+  background-color: #bed2eb !important;
+}
+
+.about-wrapper h1 {
+  color: var(--main-color);
+  margin-bottom: 25px;
+}
+
+.suggestions {
+  text-align: center;
+  margin-top: 140px;
+  color: var(--main-color);
+}
+
+.bookshelf-wrapper {
+  margin: 50px 10px 10px 20px;
+}
+
+.bookshelf-head {
+  color: var(--main-color);
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.table-title {
+  color: #438ded;
+}
+
+.table {
+  border-color: rgb(51, 153, 255);
+  background-color: var(--background-color);
+  border-radius: 7px;
+}
+
+.book-title-in-bookshelf {
+  color: var(--second-color);
+  vertical-align: middle;
+}
+
+.book-read {
+  border: 1px solid rgb(0, 119, 204);
+  background-color: #deedfc;
+  border-radius: 13px;
+  padding: 5px 12px;
+  color: var(--second-color);
+}
+
+@media (max-width: 800px) {
+  fieldset {
+    font-size: 12px;
+  }
+
+  .create-account-wrapper,
+  .login-wrapper {
+    margin: 70px 10px;
+  }
+
+  .create-form-container,
+  .login-form-container,
+  .book-details-wrapper,
+  .details-col {
+    margin: auto;
+    width: 100%;
+  }
+
+  .search-wrapper {
+    margin-top: 250px;
+  }
+
+  .book-details-wrapper {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .remember-me {
+    margin-left: 100px;
+  }
+
+  .login-button {
+    margin-left: 150px;
+  }
+
+  .form-control,
+  .book-search-button {
+    font-size: 16px;
+  }
+
+  .results-container {
+    margin: 20px 5px;
+  }
+
+  .card-img-top {
+    max-height: 270px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .btn-details {
+    margin-left: 20px;
+  }
+
+  .btn-bookshelf {
+    margin-top: 15px;
+    margin-left: 90px;
+  }
+
+  .write-reviews-wrapper,
+  .view-reviews-wrapper {
+    margin-top: 15px;
+  }
+
+  .review-container {
+    margin: 20px 20px 310px;
+  }
+
+  .made-by {
+    font-size: 15px;
+  }
 }
