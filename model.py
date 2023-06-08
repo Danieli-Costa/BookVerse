@@ -44,7 +44,7 @@ class Bookshelf(db.Model):
 
     books = db.relationship("Book", secondary=book_users, lazy="subquery",
                             backref=db.backref("bookshelf", lazy=True), overlaps="books,user")
-    # bookshelf_status = db.Column(db.Boolean)
+    
 
     def __repr__(self):
         return f"<Bookshelf bookshelf_id={self.bookshelf_id} user_id={self.user_id}>"
@@ -76,14 +76,14 @@ class Book(db.Model):
     book_id_api = db.Column(db.Text)
     title = db.Column(db.String, nullable=False)
     subtitle = db.Column(db.String)
-    authors = db.Column(db.String, nullable=False)
+    authors = db.Column(db.String)
     description = db.Column(db.Text)
     publisher = db.Column(db.String)
     published_date = db.Column(db.DateTime)
     page_count = db.Column(db.Integer)
     categories = db.Column(db.String)
     average_rating = db.Column(db.Float)
-    ratings_count = db.Column(db.Integer)
+    
     language = db.Column(db.String)
     thumbnail = db.Column(db.String)
 
