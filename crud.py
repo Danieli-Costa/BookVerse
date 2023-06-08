@@ -16,12 +16,6 @@ def create_user(email, password, first_name, last_name, username):
     return user
 
 
-def get_users():
-    """Returns all users"""
-
-    return User.query.all()
-
-
 def get_user_by_id(user_id):
     """Returns a user by the primary key"""
 
@@ -57,11 +51,6 @@ def create_book(book_id_api, title, subtitle, authors, publisher, published_date
     return book
 
 
-def get_books():
-    """Returns all books"""
-
-    return Book.query.all()
-
 
 def get_book_by_id(book_id):
     """Returns a book by primaru key"""
@@ -85,11 +74,10 @@ def create_review(user, book, review):
     return review
 
 
+def get_reviews_by_api_id(book_id_api):
+    """ Returns the reviews made on a book by the book api id """
 
-def get_reviews_by_book_id(book_id):
-    """Returns all reviews in a book"""
-
-    return Review.query.filter_by(Review.book_id == book_id)
+    return Book.query.filter(Book.book_id_api == book_id_api).first().reviews
 
 
 def create_bookshelf(user):
@@ -128,8 +116,9 @@ def get_books_in_a_bookshelf(user_id):
     return bookshelf.books
 
 def delete_book_from_bookshelf(bookshelf, book):
+    """ Removes a book from a bookshelf """
 
-    #TODO maybe wrap in try catch
+    
     bookshelf.books.remove(book)
 
     db.session.commit()
