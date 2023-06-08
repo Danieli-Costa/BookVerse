@@ -1,2 +1,147 @@
-{% extends "base.html" %} {% block title %}Book App- About the app{% endblock %}
-{% block body %} {% endblock %}
+{% extends "base.html" %} {% block title %}About BookVerse{% endblock %} {%
+block body %}
+
+<div class="container">
+  <h1 class="about-title text-center">About</h1>
+  <div class="about-wrapper">
+    <p class="description-app">
+      BookVerse is a user-friendly website designed for book lovers. It allows
+      users to search for books by title, author, or keyword, and presents them
+      with a list of related books. Users can access detailed information about
+      each book, including reviews from other BookVerse members. Additionally,
+      users can create an account to build a personalized bookshelf, where they
+      can add books they want to read and remove them once finished. Having an
+      account also enables users to write reviews for the books they've read.
+      BookVerse is the perfect destination for avid readers seeking a convenient
+      and interactive platform to explore, organize, and engage with their
+      favorite books.
+    </p>
+  </div>
+  <div class="f-and-q-wrapper">
+    <h1 class="text-center fq-title">F&Q</h1>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            What is a bookshelf and how to use it?
+          </button>
+        </h3>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            To have access to the bookshelf feature, you'll need to have an
+            account and be logged in on our website. A bookshelf feature
+            provides you an easy way to keep track of the titles that capture
+            your attention. You can add books to your bookshelf and easily view
+            the list whenever you visit our site. Once you've read a book, you
+            have the option to remove it from your bookshelf, ensuring your list
+            stays updated and organized.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            How to write reviews?
+          </button>
+        </h3>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            To write a review on our website, you'll need to have an account and
+            be logged in on our website. Once logged in, find the book you want
+            to review. Visit the book's details page, where you'll find a text
+            box provided for writing your review located under the details
+            sections for that book. Express your honest thoughts and opinions
+            about the book in the text box. When you're satisfied with your
+            review, submit it. Congratulations! Your review will now be visible
+            to all visitors on the webpage including those who don't have an
+            account nor are logged in. Simply visit the book's details page to
+            explore the existing reviews.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            Where does the information comes from?
+          </button>
+        </h3>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            All the information displayed in this website comes from the
+            <a href="https://developers.google.com/books/docs/overview"
+              >Google Books API.</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseFour"
+            aria-expanded="false"
+            aria-controls="collapseFour"
+          >
+            How do I read a book that I am interested?
+          </button>
+        </h3>
+        <div
+          id="collapseFour"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            On the book details page, you'll find a part that tells you if that
+            book is available for rent or to buy on Google Play, if yes, you
+            will also have access to the price listed and a link to buy on
+            Google Play.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="suggestions">
+      If you have any suggestions or problems with our webpage, please contact
+      us by email: <a href="mailto:danielibibiano2016@gmail.com">click here</a>
+    </span>
+  </div>
+</div>
+
+{% endblock %}
