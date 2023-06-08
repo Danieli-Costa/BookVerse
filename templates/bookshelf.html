@@ -1,27 +1,47 @@
-{% extends "base.html" %} {% block title %}Book App- Bookshelf{% endblock %} {%
-block body %}
+{% extends "base.html" %} {% block title %}Bookshelf - BookVerse{% endblock %}
+{% block body %}
 
 <div class="container">
-  <div class="bookshelf">
-    <h1>Hi,</h1>
+  <div class="bookshelf-wrapper">
+    <h1 class="bookshelf-head">Books to read</h1>
+    <div class="table-responsive-md">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="table-title">Title</th>
+            <th scope="col" class="table-title">Finished?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in bookshelf.books %}
 
-    <br />
-    <h3>Want to read:</h3>
+          <tr id="book-{{ book.book_id }}">
+            <th scope="row">
+              <i
+                class="fa-regular fa-bookmark bookshelf-icon"
+                style="color: #438ded"
+              ></i>
+            </th>
+            <td class="book-title-in-bookshelf">{{ book.title }}</td>
+            <td>
+              <form class="delete-book">
+                <input
+                  name="book-id"
+                  type="text"
+                  value="{{ book.book_id }}"
+                  hidden
+                />
+                <button class="book-read" type="submit">Read</button>
+              </form>
+            </td>
+          </tr>
 
-    {% for book in bookshelf.books %}
-
-    <ul>
-      <p class="book-id" hidden>{{book.book_id}}</p>
-      <div>{{book.title}} {{book.subtitle}}</div>
-      <p id="deleting-status"></p>
-      <div>
-        <button id="delete-book" class="btn btn-primary mt-2">
-          Delete book
-        </button>
-      </div>
-    </ul>
-    {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  {% endblock %}
 </div>
+
+{% endblock %}
