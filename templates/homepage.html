@@ -1,17 +1,37 @@
-{% extends "base.html" %} {% block title %}Book App Home{% endblock %} {% block
-body %}
+{% extends "base.html" %} {% block title %}Home - BookVerse{% endblock %} {%
+block body %}
+<div class="container">
+  <div class="search-wrapper">
+    <div class="row page-description">
+      <h1 class="text-center">Welcome to BookVerse!</h1>
+      <h6 class="text-center">For a better experience check the about page</h6>
+    </div>
+    <div class="row">
+      <form class="search-form" action="/lookup">
+        <input
+          type="search"
+          placeholder="Enter a book title or author"
+          autocomplete="on"
+          class="form-control"
+          name="search-book"
+        />
 
-<div class="search-wrapper">
-  <form class="search-form" class="mb-3" action="/lookup">
-    <input
-      type="search"
-      placeholder="Enter a book title or author"
-      autocomplete="on"
-      class="form-control"
-      name="search-book"
-    />
-
-    <input type="submit" value="Search" class="btn book-search-button" />
-  </form>
+        <input type="submit" value="Search" class="btn book-search-button" />
+      </form>
+    </div>
+  </div>
 </div>
+<footer class="made-by text-center">
+  Designed and built by Danieli Chamberlain
+  <a href="https://github.com/Danieli-Costa" target="_blank">
+    <i class="fa-brands fa-github" style="color: #000000"></i
+  ></a>
+  <a
+    href="https://www.linkedin.com/in/danieli-chamberlain-14a530225/"
+    target="_blank"
+  >
+    <i class="fa-brands fa-linkedin" style="color: #0077b5"></i
+  ></a>
+</footer>
+
 {% endblock %}
