@@ -1,71 +1,192 @@
-{% extends "base.html" %} {% block title %}Book App- Book details{% endblock %}
-{% block body %}
+{% extends "base.html" %} {% block title %}Book details - BookVerse{% endblock
+%} {% block body %}
+
+<!-- SHOW BOOK DETAILS -->
+
 <div class="container">
   <div class="book-details-wrapper">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3 d-none d-lg-block">
+        {% if "imageLinks" in details_list %}
         <img
           src="{{details_list.imageLinks.thumbnail}}"
           alt="Book cover"
-          class="details-cover"
+          class="details-cover img-fluid"
         />
+        {% else %}
+        <img
+          src="/static/img/book.jpg"
+          alt="Book cover"
+          class="book-img img-fluid"
+        />
+        {% endif %}
       </div>
-      <div class="col-8">
-        <!-- <p>{{item_id}}</p> -->
-        <h2 class="book-title">{{ details_list.title }}</h2>
-        {% if "subtitle" in details_list %}
-        <h3>{{ details_list.subtitle }}</h3>
+      <div class="col-9 details-col">
+        <h3 class="book-title">
+          {{ details_list.title }} {% if "subtitle" in details_list %}
+          {{details_list.subtitle }} {% endif %} {% if "authors" in details_list
+          %}
+        </h3>
+        <p class="book-authors">
+          <strong>Authors: </strong> {{ details_list.authors|join(" ") }}
+        </p>
+        {% endif %} {% if "publisher" in details_list %}
+        <p class="book-publisher">
+          <strong>Publisher: </strong> {{ details_list.publisher }}
+        </p>
+        {% endif %} {% if "publishedDate" in details_list %}
+        <p class="book-published-date">
+          <strong>Published date: </strong> {{ details_list.publishedDate }}
+        </p>
+        {% endif %} {% if "pageCount" in details_list %}
+        <p class="book-page-count">
+          <strong>Page count: </strong> {{ details_list.pageCount }} pages
+        </p>
         {% endif %}
 
-        <p class="book-authors">
-          <strong>Authors:</strong> {{ details_list.authors|join(" ") }}
-        </p>
-        <p class="book-publisher">
-          <strong>Publisher:</strong> {{ details_list.publisher }}
-        </p>
-        <p class="book-published-date">
-          <strong>Publish date:</strong> {{ details_list.publishedDate }}
-        </p>
-        <p class="book-page-count">
-          <strong>Page count:</strong> {{ details_list.pageCount }}
-        </p>
-        <p class="book-language">
-          <strong>Language:</strong> {{ details_list.language }}
-        </p>
-        <p class="book-preview">
-          <strong>Book description:</strong> {{ details_list.description|safe }}
-        </p>
+        <p class="book-language"><strong>Language:</strong> English</p>
+
         {% if "averageRating" in details_list %}
         <p class="book-average-rating">
-          <strong>Average rating:</strong> {{ details_list.averageRating }}
-        </p>
-        {% endif %} {% if "ratingsCount" in details_list %}
-        <p class="book-rating-count">
-          <strong>Rating count:</strong> {{ details_list.ratingsCount }}
+          <strong>Average Google Books rating: </strong> {{
+          details_list.averageRating }}
         </p>
         {% endif %} {% if "categories" in details_list %}
         <p class="book-categories">
-          <strong>Categories:</strong> {{ details_list.categories|join(" ") }}
+          <strong>Categories: </strong> {{ details_list.categories|join(" ") }}
         </p>
-        {% endif %}
-        <!-- <a class="btn btn-book-preview" href="{{ details_list.previewLink }}"
-          >Preview link</a
-        > -->
-        <p class="book-seleability">{{ selling_info_list.saleability }}</p>
-        {% if "listPrice" in selling_info_list %}
+        {% endif %} {% if "description" in details_list %}
+        <p class="book-preview">
+          <strong>Book description: </strong>
+        </p>
+
+        <p>{{ details_list.description|safe}}</p>
+
+        {% endif %} {% if selling_info_list.saleability == "FOR_SALE" %}
+        <p class="book-seleability">
+          <strong>Is this book for sale or rent on Google play? </strong> Yes
+        </p>
+
+        {% else %}
+        <p class="book-seleability">
+          <strong>Is this book for sale or rent on Google play? </strong> No
+        </p>
+        {% endif %} {% if "listPrice" in selling_info_list %}
         <p class="book-price">
-          <strong>Price listed:</strong>
+          <strong>Price listed: </strong>
           {{ selling_info_list.listPrice.amount }} {{
           selling_info_list.listPrice.currencyCode }}
         </p>
         {% endif %} {% if "buyLink" in selling_info_list %}
-        <p class="book-buy-link">{{ selling_info_list.buyLink }}</p>
+        <strong>Link to buy: </strong>
+        <a
+          href="{{ selling_info_list.buyLink }}"
+          target="_blank"
+          class="book-buy-link"
+          >Buy here</a
+        >
         {% endif %}
       </div>
     </div>
+
+    <!-- ADD BOOK TO BOOKSHELF -->
+    {% if "user" in session %}
+    <div class="row">
+      <form action="/add_to_bookshelf" method="POST" id="book_details_button">
+        <input type="text" name="book_id_api" value="{{item_id}}" hidden />
+        <input
+          type="text"
+          name="title"
+          value="{{ details_list.title }}"
+          hidden
+        />
+
+        {% if "subtitle" in details_list %}
+        <input
+          type="text"
+          name="subtitle"
+          value="{{ details_list.subtitle }}"
+          hidden
+        />
+        {% endif %} {% if "authors" in details_list %}
+        <input
+          type="text"
+          name="authors"
+          value="{{ details_list.authors }}"
+          hidden
+        />
+        {% endif %} {% if "imageLinks" in details_list %}
+        <input
+          type="text"
+          name="thumbnail"
+          value="{{details_list.imageLinks.thumbnail}}"
+          hidden
+        />
+        {% else %}
+        <input
+          type="text"
+          value="/static/img/book.jpg"
+          name="thumbnail"
+          hidden
+        />
+        {% endif %} {% if "publisher" in details_list %}
+        <input
+          type="text"
+          name="publisher"
+          value="{{ details_list.publisher }}"
+          hidden
+        />
+        {% endif %} {% if "publishedDate" in details_list %}
+        <input
+          type="text"
+          name="published_date"
+          value="{{ details_list.publishedDate }}"
+          hidden
+        />
+        {% endif %} {% if "pageCount" in details_list %}
+        <input
+          type="text"
+          name="page_count"
+          value="{{ details_list.pageCount }}"
+          hidden
+        />
+        {% endif %}
+
+        <input
+          type="text"
+          name="language"
+          value="{{ details_list.language }}"
+          hidden
+        />
+
+        {% if "averageRating" in details_list %}
+        <input
+          type="text"
+          name="average_rating"
+          value="{{ details_list.averageRating }}"
+          hidden
+        />
+        {% endif %} {% if "categories" in details_list %}
+        <input
+          type="text"
+          name="categories"
+          value="{{ details_list.categories}}"
+          hidden
+        />
+        {% endif %}
+
+        <button class="btn btn-bookshelf">Add to my bookshelf</button>
+      </form>
+    </div>
+    {% endif %}
   </div>
-  <div class="row">
-    <form action="/add_to_bookshelf" method="POST" id="book_details_button">
+
+  <!-- REVIEWS -->
+
+  {% if "user" in session %}
+  <div class="write-reviews-wrapper">
+    <h5 class="text-center">Write your review</h5>
+    <form action="/write_review" method="POST">
       <input type="text" name="book_id_api" value="{{item_id}}" hidden />
       <input type="text" name="title" value="{{ details_list.title }}" hidden />
 
@@ -76,42 +197,44 @@
         value="{{ details_list.subtitle }}"
         hidden
       />
-      {% endif %}
-
+      {% endif %} {% if "authors" in details_list %}
       <input
         type="text"
         name="authors"
         value="{{ details_list.authors }}"
         hidden
       />
-
+      {% endif %} {% if "imageLinks" in details_list %}
       <input
         type="text"
         name="thumbnail"
         value="{{details_list.imageLinks.thumbnail}}"
         hidden
       />
-
+      {% else %}
+      <input type="text" value="/static/img/book.jpg" name="thumbnail" hidden />
+      {% endif %} {% if "publisher" in details_list %}
       <input
         type="text"
         name="publisher"
         value="{{ details_list.publisher }}"
         hidden
       />
-
+      {% endif %} {% if "publishedDate" in details_list %}
       <input
         type="text"
         name="published_date"
         value="{{ details_list.publishedDate }}"
         hidden
       />
-
+      {% endif %} {% if "pageCount" in details_list %}
       <input
         type="text"
         name="page_count"
         value="{{ details_list.pageCount }}"
         hidden
       />
+      {% endif %}
 
       <input
         type="text"
@@ -142,13 +265,62 @@
         hidden
       />
       {% endif %}
+      <fieldset>
+        <label for="username"><strong>Username: &nbsp; </strong></label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="{{ session['user'] }}"
+          size="25"
+          disabled
+        />
+        <br />
+        <br />
+        <label for="book"><strong>Book: &nbsp; </strong></label>
+        <input
+          type="text"
+          id="book-title"
+          name="book_title"
+          value="{{details_list.title}}"
+          size="40"
+          disabled
+        />
+        <br />
+        <br />
 
-      <button class="btn btn-bookshelf">Add to my bookshelf</button>
+        <p><strong>Review: </strong></p>
+        <textarea
+          id="review-text"
+          name="review"
+          rows="5"
+          cols="50"
+          placeholder="Write your review here"
+        ></textarea
+        ><br /><br />
+        <button type="submit" class="submit-review">Submit</button>
+      </fieldset>
     </form>
   </div>
-  <div class="row">
-    <h4 class="reviews-title">COMMUNITY REVIEWS</h4>
+  {% endif %}
+
+  <div class="view-reviews-wrapper">
+    <h5 class="text-center">Community reviews</h5>
+    <hr class="dotted" />
+
+    {% if reviews %} {% for review in reviews %}
+
+    <div class="row">
+      <p class="username-review">
+        <strong>{{review.user.username}}'s review </strong>
+      </p>
+      <p class="review-text">{{review.review}}</p>
+      <hr />
+      {% endfor %} {% else %}
+
+      <p class="no-reviews">No reviews yet!</p>
+      {% endif %}
+    </div>
   </div>
 </div>
-
 {% endblock %}
