@@ -1,51 +1,90 @@
-{% extends "base.html" %} {% block title %}BookVerse - Create account{%
+{% extends "base.html" %} {% block title %}Create account - BookVerse{%
 endblock%} {% block body %}
 
 <div class="container">
   <div class="create-account-wrapper">
-    <h4 class="text-center">New here ?</h4>
+    <div class="row">
+      <h4 class="text-center">New here ?</h4>
+    </div>
     <br />
-    <p class="text-center">
-      Welcome to BookVerse, please fill out the information below to create an
-      account.
-    </p>
+    <div class="row">
+      <p class="text-center">
+        Welcome to BookVerse, please fill out the information below to create an
+        account.
+      </p>
+    </div>
     <br />
     <div class="create-form-container">
       <form action="/create" method="POST" class="create-user">
-        <div class="input-field">
-          <i class="fa-solid fa-user" style="color: #3399ff"></i>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="first_name"
-            required
-          />
-        </div>
-        <div class="input-field">
-          <i class="fa-solid fa-user" style="color: #3399ff"></i>
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="last_name"
-            required
-          />
-        </div>
-        <div class="input-field">
-          <i class="fa-solid fa-user" style="color: #3399ff"></i>
-          <input type="text" placeholder="Username" name="username" required />
-        </div>
-        <div class="input-field">
-          <i class="fa-solid fa-at" style="color: #3399ff"></i>
-          <input type="email" placeholder="Email" name="email" required />
-        </div>
-        <div class="input-field">
-          <i class="fa-solid fa-lock" style="color: #3399ff"></i>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            required
-          />
+        <div class="row">
+          <div class="col-12">
+            <div class="input-field">
+              <i class="fa-solid fa-user" style="color: #3399ff"></i>
+              <input
+                type="text"
+                placeholder="First Name"
+                name="first_name"
+                autocomplete="off"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-field">
+              <i class="fa-solid fa-user" style="color: #3399ff"></i>
+              <input
+                type="text"
+                placeholder="Last Name"
+                name="last_name"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-field">
+              <i class="fa-solid fa-user" style="color: #3399ff"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="input-field">
+              <i class="fa-solid fa-at" style="color: #3399ff"></i>
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                minlength="9"
+                maxlength="62"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                title="This email is not valid"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-11">
+            <div class="input-field">
+              <i class="fa-solid fa-lock" style="color: #3399ff"></i>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="password"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-1 d-flex align-items-center justify-content-center">
+            <i
+              toggle="#password-field"
+              class="fa-regular fa-eye field_icon toggle-password"
+              style="color: #fcfcfc"
+            ></i>
+          </div>
         </div>
 
         <input type="submit" class="btn sign-up-button" value="Sign up" />
