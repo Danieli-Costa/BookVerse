@@ -35,7 +35,7 @@ BookVerse is a user-friendly website designed for book lovers. It allows users t
 
 Search for books by title, author or keywords. View results of search and details of a specific book. User account registration not required.
 
-![Book search logged out]()
+![Book search logged out](book-search-details.gif)
 <br /> <br />
 
 ### Password hashing
@@ -50,7 +50,7 @@ When a user creates a new account their password is hashed using Passlib library
 
 Create a account or login to have a bookshelf and add books you want to read to it. After reading the book you can remove it from the list.
 
-![Bookshelf]()
+![Bookshelf](bookshelf.gif)
 <br /> <br />
 
 ### Reviews
@@ -58,7 +58,7 @@ Create a account or login to have a bookshelf and add books you want to read to 
 To view reviews you don't need to be logged in.
 To write a review you need to create an account or login.
 
-![Reviews]()
+![Reviews](reviews.gif)
 <br /> <br />
 
 ## <a name="installation"></a> Intallation
